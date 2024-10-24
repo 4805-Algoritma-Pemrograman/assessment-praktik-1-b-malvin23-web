@@ -1,5 +1,3 @@
-
-
 import java.util.Scanner;
 
 public class Nomor1 {
@@ -44,5 +42,8 @@ public class Nomor1 {
         return komisi;
     }
 }
+
+
+
 
 
