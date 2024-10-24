@@ -60,4 +60,3 @@ public class Nomor2 {
         scanner.close();
     }
 }
-
