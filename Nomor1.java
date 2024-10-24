@@ -44,3 +44,5 @@ public class Nomor1 {
         return komisi;
     }
 }
+
+
