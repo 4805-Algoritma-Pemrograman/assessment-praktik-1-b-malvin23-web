@@ -3,45 +3,61 @@
 
 import java.util.Scanner;
 
-public class Nomor1 {
+public class Nomor2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        
+        int jumlahTransaksi = 0;
+        double totalPendapatan = 0;
+        String lagi = "";  
 
-        System.out.print("Total penjualan salesman: ");
-        double totalPenjualan1 = scanner.nextDouble();
-        
-        
-        double komisi1 = 0;
-        if (totalPenjualan1 == 4000000) {
-            komisi1 = 40000.0; 
-        } else {
-            komisi1 = hitungKomisi(totalPenjualan1);
-        }
-        
-        System.out.println("Komisi yang didapatkan = " + komisi1);
+        do {
+            System.out.print("Masukan kode bungalow [1/2/3]: ");
+            int kodeBungalow = scanner.nextInt();
 
-        System.out.print("Total penjualan salesman : ");
-        double totalPenjualan2 = scanner.nextDouble();
+            System.out.print("lama menginap (malam): ");
+            int lamaMenginap = scanner.nextInt();
+            
+            scanner.nextLine();  
+
+            double tarifPerMalam = 0;
+            double persentasePelayanan = 0;
+
+            switch (kodeBungalow) {
+                case 1:
+                    tarifPerMalam = 50000;
+                    persentasePelayanan = 0.30;
+                    break;
+                case 2:
+                    tarifPerMalam = 40000;
+                    persentasePelayanan = 0.20;
+                    break;
+                case 3:
+                    tarifPerMalam = 30000;
+                    persentasePelayanan = 0.10;
+                    break;
+                default:
+                    System.out.println("Kode bungalow tidak valid!");
+                    continue; 
+            }
+
+            double biayaMenginap = lamaMenginap * tarifPerMalam;
+
+            double biayaPelayanan = biayaMenginap * persentasePelayanan;
+
+            double totalBiaya = biayaMenginap + biayaPelayanan;
+
+            totalPendapatan += totalBiaya;
+            jumlahTransaksi++;
+
+            System.out.print("Input lagi (Y/N)?: ");
+            lagi = scanner.next(); 
+
+        } while (lagi.equalsIgnoreCase("Y"));
+
+        System.out.println("Jumlah transaksi penyewaan bungalow = " + jumlahTransaksi);
+        System.out.println("Total pendapatan = Rp " + totalPendapatan);
         
-        double komisi2 = 0;
-        if (totalPenjualan2 == 700000) {
-            komisi2 = 80000.0; 
-        } else {
-            komisi2 = hitungKomisi(totalPenjualan2);
-        }
-        
-        System.out.println("Komisi yang didapatkan = " + komisi2);
-    }
-    
-    public static double hitungKomisi(double totalPenjualan) {
-        double komisi;
-        if (totalPenjualan <= 500000) {
-            komisi = totalPenjualan * 0.10;
-        } else {
-            double komisiPertama = 500000 * 0.10;
-            double komisiKedua = (totalPenjualan - 500000) * 0.15;
-            komisi = komisiPertama + komisiKedua;
-        }
-        return komisi;
+        scanner.close();
     }
 }
